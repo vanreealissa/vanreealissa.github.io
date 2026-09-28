@@ -63,7 +63,7 @@ button,input,textarea{font:inherit;color:inherit}
 .avatar{width:128px;height:128px;border-radius:50%;object-fit:cover;object-position:50% 40%;display:block;margin:0 0 22px;border:3px solid var(--surface);box-shadow:0 0 0 1px var(--line)}
 .role{font:500 13px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin:0 0 18px}
 .bio{margin:0;max-width:44ch;font-size:17px;color:var(--ink)}
-.seeking{display:flex;gap:10px;align-items:baseline;margin:20px 0 0;max-width:44ch;font-weight:500}
+.seeking{display:flex;gap:10px;align-items:baseline;margin:24px 0 0;max-width:44ch;font-weight:500}
 .seeking::before{content:"";flex:none;width:9px;height:9px;border-radius:50%;background:var(--accent-fill);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent-fill) 25%,transparent);transform:translateY(-1px)}
 .cta{margin-top:16px;text-decoration:none;padding:9px 18px;font-size:15px}
 .facts{display:grid;gap:10px;margin:22px 0 0;padding:0;list-style:none;font-size:14px;color:var(--muted)}
@@ -216,15 +216,15 @@ dialog h2{font:700 24px/1.1 var(--display);margin:0 0 4px;letter-spacing:-.02em}
     if(canEdit && editing){
       h += '<div class="editbar"><p>Je bent aan het bewerken. Elke keer dat je opslaat, wordt de pagina bijgewerkt voor iedereen met de link.</p><div class="actions"><button class="btn" id="edit-profile" type="button">Profiel bewerken</button><button class="btn primary" id="add-project" type="button">+ Project toevoegen</button></div></div>';
     }
-    h += '<section class="intro" id="top"><div>'+(P.photo ? '<img class="avatar" src="'+esc(P.photo)+'" alt="Foto van '+esc(P.name)+'" width="128" height="128">' : '')+'<p class="role">'+esc(P.role)+'</p><h1>'+nameHtml(P.name)+'</h1></div><div><p class="bio">'+esc(P.bio)+'</p>'
-      + (P.seeking ? '<p class="seeking">'+esc(P.seeking)+'</p>' : '')
-      + (P.email ? '<a class="btn primary cta" href="mailto:'+esc(P.email)+'">Neem contact op</a>' : '')
-      + '<ul class="facts">';
+    h += '<section class="intro" id="top"><div>'+(P.photo ? '<img class="avatar" src="'+esc(P.photo)+'" alt="Foto van '+esc(P.name)+'" width="128" height="128">' : '')+'<p class="role">'+esc(P.role)+'</p><h1>'+nameHtml(P.name)+'</h1></div><div><p class="bio">'+esc(P.bio)+'</p><ul class="facts">';
     if(P.location) h += '<li><b>Woont in</b><span class="val" style="user-select:text">'+esc(P.location)+'</span></li>';
     if(P.email) h += '<li><b>E-mail</b><span class="val" id="email-val">'+esc(P.email)+'</span><button class="copy" id="copy-email" type="button">Kopieer</button></li>';
     var links = (P.links||[]).filter(function(l){ return safeUrl(l.url); });
     if(links.length) h += '<li><b>Online</b><span class="links">'+links.map(function(l){ return '<a href="'+esc(safeUrl(l.url))+'" target="_blank" rel="noopener">'+esc(l.label||l.url)+' ↗</a>'; }).join('')+'</span></li>';
-    h += '</ul></div></section>';
+    h += '</ul>'
+      + (P.seeking ? '<p class="seeking">'+esc(P.seeking)+'</p>' : '')
+      + (P.email ? '<a class="btn primary cta" href="mailto:'+esc(P.email)+'">Neem contact op</a>' : '')
+      + '</div></section>';
 
     h += '<section aria-labelledby="work-h"><div class="work-head"><h2 id="work-h">Recente projecten <span>('+STATE.projects.length+')</span></h2>';
     if(tags.length > 1){
