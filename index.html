@@ -350,14 +350,6 @@ dialog h2{font:700 24px/1.1 var(--display);margin:0 0 4px;letter-spacing:-.02em}
   render();
   try { var t = sessionStorage.getItem('pf-toast'); if(t){ sessionStorage.removeItem('pf-toast'); toast(t); } } catch(_){}
 
-  if(window.claude && claude.use){
-    Promise.all([claude.use('artifact'), claude.use('user')]).then(function(r){
-      artifactApi = r[0];
-      if(!artifactApi) return;
-      var u = r[1];
-      return (u ? u.canEdit() : Promise.resolve(false)).then(function(ok){ canEdit = !!ok; render(); });
-    }).catch(function(){});
-  }
 })();
 </script>
 </body>
